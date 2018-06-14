@@ -1,0 +1,22 @@
+{
+  "name": "thecrew-exchange",
+  "version": "0.0.1",
+  "description": "Node server of website and bot of TheCrewExchange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/celianvdb/TheCrew-Exchange.git"
+  },
+  "keywords": [
+    "thecrew"
+  ],
+  "author": "VAN DER BIEST Célian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/celianvdb/TheCrew-Exchange/issues"
+  },
+  "homepage": "https://github.com/celianvdb/TheCrew-Exchange#readme"
+}
