@@ -6,7 +6,7 @@ log.info('Welcome ! TheCrewExchange is loading ...');
 
 /* Init every services */
 var services = require('./services/');
-services.start_all().then(()=>{
+services.start_all().then(() => {
 	require('./discord/');
 })
 
