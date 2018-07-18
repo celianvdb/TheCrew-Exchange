@@ -1,5 +1,26 @@
 # TheCrewExchange
+# WIP - NOT USABLE ATM
+Here is the source code of https://thecrewexchange.com/ API and its bot.
 
-Here is the source code of https://thecrewexchange.com/ and its bot.
+# Setup
 
-Instructions to deploy dev version are coming soon ...
+The setup is extremely easy and is same using Windows/Linux.
+
+## Requirements
+
+ - NodeJs/NPM
+ - MongoDB
+
+## Config
+
+Everything is in the config.json
+
+## Install dependency
+
+    npm install
+
+## Start node
+
+Probably the hardest command !!! 
+
+    node .
