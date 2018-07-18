@@ -1,0 +1,41 @@
+{
+	"env" : "dev",
+	"domain" : "DOMAIN",
+	"discord" : {
+		"token" : "DISCORD_TOKEN",
+		"prefix" : "!tce"
+	},
+	"mongodb" : {
+		"url" : "Example: mongodb://127.0.0.1/tce"
+	},
+	"storage" : {
+		"pictures": "PICS_FOLDER"
+	},
+	"http" : {
+		"port": "WEB_SERVER_PORT"
+	},
+	"logs" : {
+		"all" : "PATH_ALL_LOGS",
+		"errors" : "PATH_ERRORS_LOGS"
+	},
+	"OAuth2" : {
+		"twitch" : {
+			"init": {
+				"client": {
+					"id" : "CLIENT_ID",
+					"secret" : "CLIENT_SECRET"
+				},
+				"auth": {
+					"tokenHost" : "https://id.twitch.tv",
+					"authorizePath" : "/oauth2/authorize",
+					"tokenPath" : "/oauth2/token"
+				}
+			},
+			"authorization": {
+				"scope" : ["user:read:email"],
+				"redirect_uri" : "REDIRECT_URL"
+			},
+			"user" : "https://id.twitch.tv/oauth2/validate"
+		}
+	}
+}

@@ -2,7 +2,7 @@
   "name": "thecrew-exchange",
   "version": "0.0.1",
   "description": "Node server of website and bot of TheCrewExchange",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,20 @@
   "bugs": {
     "url": "https://github.com/celianvdb/TheCrew-Exchange/issues"
   },
-  "homepage": "https://github.com/celianvdb/TheCrew-Exchange#readme"
+  "homepage": "https://github.com/celianvdb/TheCrew-Exchange#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "discord.js": "^11.3.2",
+    "eris": "^0.8.6",
+    "express": "^4.16.3",
+    "express-promise-router": "^3.0.2",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.1.5",
+    "mongoose-findorcreate": "^3.0.0",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5",
+    "simple-oauth2": "^2.2.0",
+    "winston": "^3.0.0"
+  }
 }

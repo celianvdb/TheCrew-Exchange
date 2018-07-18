@@ -1,0 +1,5 @@
+app/logs/*
+app/config.json
+app/config.prod.json
+node_modules/*
+package-lock.json
