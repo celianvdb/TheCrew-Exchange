@@ -9,7 +9,7 @@ const meRouter = require('./me');
 // Set header as JSON 
 router.use("*", (req, res, next) => {
     res.errors = (errors) => {
-        res.json({ errors : errors })
+        res.json({ status : 'error', errors : errors })
     };
     next();
 });
