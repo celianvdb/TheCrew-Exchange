@@ -1,6 +1,8 @@
 var bcrypt = require('bcrypt-nodejs');
+var Token = require('./token.js');
 var mongoose = require('mongoose');
-const findOrCreate = require('mongoose-findorcreate');
+var security = require('./security.js');
+
 var Schema = mongoose.Schema;
 
 var User = new Schema({
@@ -8,7 +10,6 @@ var User = new Schema({
 	mail: { type : String},
 	uplay: { type : String},
 	twitch_id: { type : String},
-	password: { type : String},
 	mail_validated: { type: Boolean, default: false},
 	banned: { type: Boolean, default: false},
 	created_on: { type: Date, default: Date.now }
@@ -23,6 +24,19 @@ User.methods.login = function(password = false) { // Return True if user is allo
 	}
 };
 
-User.plugin(findOrCreate);
+User.methods.createToken = async function () {
+	return new Promise((resolve, reject) => {
+		var token = new Token({
+			'user_id' : this._id
+		}).save().then((token) => {
+			if(token) {
+				resolve(token);
+			}
+			reject('Something went wrong...');
+		}).catch((err) => {
+			reject('Something went wrong...');
+		});
+	});
+}
 
 module.exports = mongoose.model('User', User);

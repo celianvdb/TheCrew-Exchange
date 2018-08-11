@@ -5,7 +5,8 @@ module.exports = async function(req, res) {
 	const oauth2 = require('simple-oauth2').create(config.init);;
 	const User = require('../../models/user.js');
 	const request = require('request-promise-native');
-	const jwt = require('jsonwebtoken');
+
+	const log = require('../../logger.js');
 
 	const code = req.query.code;
 	var tokenConfig;
@@ -24,38 +25,51 @@ module.exports = async function(req, res) {
 
 	try {
 		var token = await oauth2.authorizationCode.getToken(tokenConfig);		
-		token = oauth2.accessToken.create(token);	
-		console.log(token)
-		setTimeout(function(){ console.log(token); }, 3000);
+		token = oauth2.accessToken.create(token).token;	
+		
 		//Get user_id from OAuth provider
 		request({
 			url: config.user,
 			headers: {
 				'Authorization': 'OAuth '+token.access_token
-			}
-		}).then((user)=> {
+			},
+			json : true
+		}).then((remoteUser)=> {
 			const service_id = provider+'_id';
-			var id;
+			var id = '';
+			var username = '';
 
-			if(provider == 'twitch') {
-				const id = user.user_id;
+			if(provider === 'twitch') {
+				id = remoteUser.user_id;
+				username = remoteUser.login;
 			}
 
-			User.findOne({ service_id: id }).then(function(user) {
+			User.findOne({ twitch_id : id }).then(async function(user) {
 				if(!user) { //If user need to be created
-					/* WIP */
-					var new_user = new User({
-						'username' : user.login
-					})
-				}else {
-					//User exist
+					console.log('Creating account...')
+					var data = {};
+					data[service_id] = id;
+					data['username'] = username;
+
+					user = new User(data);
+					await user.save();
+					
 				}
-			}).catch(()=>{
-				res.errors(['Login failed!']);
+				var token = await user.createToken();
+
+				res.json({
+					"status" : 'Success',
+					"token" : token.getToken()
+				});
+
+			}).catch((err)=>{
+				console.log(err);
+				log.error('Error while creating user in auth_callback: ' + err)
+				res.errors([err]); // TO REMOVE, DEBUG
 			});
 
 		}).catch((err)=>{
-			res.errors(['Login failed!']);
+			res.errors([err]); // TO REMOVE, DEBUG
 		})
 
 	} catch(err) {

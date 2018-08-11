@@ -1,5 +1,6 @@
 {
 	"env" : "dev",
+	"token_secret" : "mysupersecret",
 	"domain" : "DOMAIN",
 	"discord" : {
 		"token" : "DISCORD_TOKEN",
