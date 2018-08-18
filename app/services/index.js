@@ -34,7 +34,11 @@ class ServiceManager {
 			if(!realtimeService.status)
 				services_loader.push(realtimeService.start());
 
-		return Promise.all(services_loader).then(() => {log.info('All services started. 😲');});
+		return Promise.all(services_loader)
+			.then(() => {log.info('All services started. 😲');})
+			.catch(function() {
+				log.error('One or many services failed to start...');
+		});
 	}
 
 	stop_all() {

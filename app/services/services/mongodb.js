@@ -11,7 +11,7 @@ class MongoDB extends Service {
 	}
 
 	start() {
-		return new Promise((resolve) => {
+		return new Promise((resolve, reject) => {
 			this.client.connect(this.config.url)
 				.then(() => {
 					log.info(this.name + ' connected!');

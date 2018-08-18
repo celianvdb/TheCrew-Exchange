@@ -8,7 +8,7 @@ log.info('Welcome ! TheCrewExchange is loading ...');
 var services = require('./services/');
 services.start_all().then(() => {
 	require('./discord/');
-})
+});
 
 /* Setup Express */
 

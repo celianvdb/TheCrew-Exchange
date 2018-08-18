@@ -1,7 +1,6 @@
 var bcrypt = require('bcrypt-nodejs');
-var Token = require('./token.js');
 var mongoose = require('mongoose');
-var security = require('./security.js');
+var TokensPair = require('./tokensPair.js');
 
 var Schema = mongoose.Schema;
 
@@ -24,19 +23,10 @@ User.methods.login = function(password = false) { // Return True if user is allo
 	}
 };
 
-User.methods.createToken = async function () {
-	return new Promise((resolve, reject) => {
-		var token = new Token({
-			'user_id' : this._id
-		}).save().then((token) => {
-			if(token) {
-				resolve(token);
-			}
-			reject('Something went wrong...');
-		}).catch((err) => {
-			reject('Something went wrong...');
-		});
-	});
+User.methods.createTokensPair = async function () {
+	var tokens = new TokensPair();
+	await tokens.generate(this._id);
+	return tokens;
 }
 
 module.exports = mongoose.model('User', User);

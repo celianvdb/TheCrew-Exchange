@@ -55,24 +55,28 @@ module.exports = async function(req, res) {
 					await user.save();
 					
 				}
-				var token = await user.createToken();
+				
+				var tokensPair = await user.createTokensPair();
 
 				res.json({
 					"status" : 'Success',
-					"token" : token.getToken()
+					"access_token" : tokensPair.access_token.getToken(),
+					"refresh_token" : tokensPair.refresh_token.getToken()
 				});
 
 			}).catch((err)=>{
 				console.log(err);
 				log.error('Error while creating user in auth_callback: ' + err)
-				res.errors([err]); // TO REMOVE, DEBUG
+				res.errors(['Login failed!']);
 			});
 
-		}).catch((err)=>{
-			res.errors([err]); // TO REMOVE, DEBUG
+		}).catch((err) => {
+			log.error('Error in auth_callback: ' + err)
+			res.errors(['Login failed!']);
 		})
 
 	} catch(err) {
+		log.error('Error in auth_callback: ' + err)
 		res.errors(['Login failed!']);
 	}
 }
