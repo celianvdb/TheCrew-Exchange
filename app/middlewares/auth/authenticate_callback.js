@@ -25,7 +25,7 @@ module.exports = async function(req, res) {
 
 	try {
 		var token = await oauth2.authorizationCode.getToken(tokenConfig);		
-		token = oauth2.accessToken.create(token).token;	
+		token = oauth2.accessToken.create(token).token;
 		
 		//Get user_id from OAuth provider
 		request({

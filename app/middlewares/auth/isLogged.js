@@ -1,9 +1,9 @@
 var Token = require('../../models/token');
 module.exports = async function(req, res, next) {
-	if(!req.query.token)
+	if(!req.query.accces_token)
 		return res.errors(['No token provided.']);
 
-	var token = req.query.token;
+	var token = req.query.accces_token;
 	
 	token = await Token.getTokenFromJWT(token);
 	if(!token) {

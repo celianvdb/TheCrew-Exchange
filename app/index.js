@@ -1,5 +1,4 @@
 const log = require('./logger');
-const passport = require('./passport.js');
 var router = require('./router');
 
 log.info('Welcome ! TheCrewExchange is loading ...');

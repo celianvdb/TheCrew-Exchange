@@ -1,6 +1,6 @@
 # TheCrewExchange
 # WIP - NOT USABLE ATM
-Here is the source code of https://thecrewexchange.com/ API and its bot.
+Here is the source code of https://thecrew-exchange.com/ API and its bot.
 
 # Setup
 
@@ -24,3 +24,7 @@ Everything is in the config.json
 Probably the hardest command !!! 
 
     node .
+
+## Little notes
+
+Token date depend of the TimeZone of the server

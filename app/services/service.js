@@ -3,18 +3,18 @@
 */
 class Service {
 	
-		constructor(name, config) {
-			this.name = name;
-			this.config = config;
-		}
-	
-		start() {
-	
-		}
-	
-		stop() {
-	
-		}
-	
+	constructor(name, config) {
+		this.name = name;
+		this.config = config;
 	}
-	module.exports = Service;
+
+	start() {
+
+	}
+
+	stop() {
+
+	}
+
+}
+module.exports = Service;
