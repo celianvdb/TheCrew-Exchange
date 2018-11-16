@@ -12,7 +12,7 @@ class MongoDB extends Service {
 
 	start() {
 		return new Promise((resolve, reject) => {
-			this.client.connect(this.config.url)
+			this.client.connect(this.config.url, { useNewUrlParser: true })
 				.then(() => {
 					log.info(this.name + ' connected!');
 					resolve('Connected');
