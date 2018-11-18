@@ -6,6 +6,7 @@ const config = require('../../config.json');
 const isLogged = require('../../middlewares/auth/isLogged.js');
 const fs = require('fs');
 const Pic = require('../../models/pic.js');
+const Library = require('../../models/library.js');
 
 router.use(fileUpload());
 router.use(bodyParser.json());
@@ -41,6 +42,10 @@ router.post('/upload', /*isLogged, */async (req , res, next) => { //isLogged ByP
 		}
 
 	}
+});
+
+router.get('/test', (req, res, next) => {
+	var test = new Library({'name':'gallery', 'description':'Main TCE\'s gallery'}).save()
 });
 
 module.exports = router;

@@ -7,7 +7,7 @@ var fs = require('fs');
 var Pic = new Schema({
 	identifier : { type: String },
 	user_id: { type: ObjectId },
-	librarys : { type: Array },
+	libraries : { type: Array },
 	uploaded_date: { type: Date, default: Date.now },
 	checksum : { type: String }, //md5 Checksum of the original file only
 	filesize : { type: Number }, //Filesize of the original file only (Bytes)
