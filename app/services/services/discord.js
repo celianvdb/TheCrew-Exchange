@@ -15,6 +15,7 @@ class discord extends Service {
 	start() {
 		return this.client.login(this.config.token).then(() => {
 			log.info('Discord : Connected');
+			this.client.user.setActivity(` your pics !`, {type: "WATCHING"});
 		});
 	}
 
