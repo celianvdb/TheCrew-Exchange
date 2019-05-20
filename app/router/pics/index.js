@@ -12,12 +12,13 @@ router.use(fileUpload());
 router.use(bodyParser.json());
 
 router.post('/upload', /*isLogged, */async (req , res, next) => { //isLogged ByPass temporary for dev reasons
-	if(req.files && req.body.librarys) { // files an librarys are required
+	if(req.files && req.body.librarys) { // files an librarys are var required
 		
 		if(req.files.picture) { // Image process
 			if(req.files.picture.mimetype == 'image/jpeg' || req.files.picture.mimetype == 'image/png') {
+				
 				/*TODO
-					Check if library exist
+					Check if librarys exist
 					Check size of pic
 					Check for stupid ratio ?
 				*/

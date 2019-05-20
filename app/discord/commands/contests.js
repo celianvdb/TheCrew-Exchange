@@ -1,5 +1,5 @@
 module.exports = function(msg) {
-	if(msg.content.split(' ')[2]) {
-		console.log('Contest name : ' + msg.content.split(' ')[2]);
+	if(msg.content.split(' ')[2] == "list") {
+		msg.reply('Here is the list of actives contests : {LIST}');
 	}
 }
