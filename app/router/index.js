@@ -6,6 +6,7 @@ const userRouter = require('./user');
 const authRouter = require('./auth');
 const meRouter = require('./me');
 const picsRouter = require('./pics');
+const wikiRouter = require('./wiki');
 
 // Set header as JSON 
 router.use("*", (req, res, next) => {
@@ -20,5 +21,6 @@ router.use("/me", meRouter);
 router.use("/user", userRouter);
 router.use("/auth", authRouter);
 router.use("/pics", picsRouter);
+router.use("/wiki", wikiRouter);
 
 module.exports = router;
