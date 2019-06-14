@@ -2,15 +2,18 @@ var config = require('../config.json');
 var commandHandler = require('./commandsHandler');
 var discord = require('../services').discord.client;
 const Embed = require('discord.js').RichEmbed;
+const shell = require('shelljs');
 
 String.template = require('template-strings');
 
 class DiscordMainHandler {
 	constructor() {
-
-		var fs = require('fs');
 		
+		var live_bot_alive;
+
 		discord.on('message', msg => {
+			if(msg.author == config.discord.live_bot_id)
+				live_bot_alive = true;
 
 			if(msg.content.toLowerCase().split(' ')[0] === config.discord.prefix)
 				commandHandler(msg);
@@ -35,6 +38,7 @@ class DiscordMainHandler {
 			}
 
 		})
+
 		discord.on('guildMemberAdd', guildMember => { // Welcome messages
 			config.discord.channels.welcome_messages.forEach(welcome => {
 				if(guildMember.guild.id == welcome.guild) {
@@ -42,6 +46,20 @@ class DiscordMainHandler {
 				}
 			});
 		})
+
+		//Restart live_bot if not responding to ping after 10sec
+		/*
+		setInterval(() => {
+			discord.guilds.find('id', config.discord.tc_community_guild).members.find('id', live_bot_id).createDM().then((DMChannel) => {
+				DMChannel.sendMessage('/ping');
+				live_bot_alive = Date();
+				setTimeout(() => {
+					if(live_bot_alive != True)
+						shell.exec('killall LiveBot3');
+				}, 10000);
+			})
+		}, 180000)*/
+
 	}
 }
 

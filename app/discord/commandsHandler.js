@@ -1,5 +1,7 @@
 var contests = require('./commands/contests.js');
 var purge = require('./commands/purge.js');
+var live = require('./commands/purge.js');
+var summit = require('./commands/summit.js');
 
 module.exports = function(msg) {
 	console.log('Command handler : '+msg.content)
@@ -12,6 +14,12 @@ module.exports = function(msg) {
 			break;
 		case 'purge':
 			purge(msg);
+			break;
+		case 'live':
+			live(msg);
+			break;
+		case 'summit':
+			summit(msg);
 			break;
 		case 'help':
 		default:
