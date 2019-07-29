@@ -60,6 +60,15 @@ class DiscordMainHandler {
 			})
 		}, 180000)*/
 
+		discord.on('ready', () => {
+			discord.guilds.find('id', config.discord.tc_community_guild).members.find('id', '85017957343694848').createDM().then((DMChannel) => {
+				DMChannel.sendMessage('HEYSALUT!!!').then((msg) => {
+					console.log(msg);
+				}).catch((err) => {
+					console.log(err);
+				});
+			});
+		})
 	}
 }
 

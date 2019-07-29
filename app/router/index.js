@@ -13,6 +13,9 @@ router.use("*", (req, res, next) => {
     res.errors = (errors) => {
         res.json({ status : 'error', errors : errors })
     };
+    res.success = (msgs) => {
+        res.json({ status : 'success', msgs : msgs })
+    };
     next();
 });
 

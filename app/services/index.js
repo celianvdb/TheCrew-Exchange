@@ -10,6 +10,7 @@ const log = require('../logger');
 const mongodb = require('./services/mongodb.js');
 const express = require('./services/express.js');
 const discord = require('./services/discord.js');
+const mail = require('./services/mail.js');
 
 class ServiceManager {
 
@@ -20,6 +21,7 @@ class ServiceManager {
 		//this.testdb = new postgresql('PgSQL', config.pgsql);
 		this.http = new express('Express', config.http);
 		this.discord = new discord('Discord', config.discord);
+		this.mail = new mail('Mail', config.mail);
 
 		this.realtimeServices = [this.http, this.db, this.discord];
 	}
